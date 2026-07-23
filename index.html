@@ -11,13 +11,15 @@
     :root {
       --bg: #0f172a;
       --panel: #111827;
+      --panel-2: #0b1220;
       --text: #e5e7eb;
       --muted: #a7b0c0;
       --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-2: #c4b5fd;
+      --good: #86efac;
+      --warn: #fde68a;
       --line: #243044;
-      --card: #111827;
-      --card-alt: #0b1220;
+      --soft-line: rgba(148, 163, 184, 0.22);
     }
 
     * {
@@ -45,9 +47,15 @@
       text-decoration: underline;
     }
 
-    nav {
-      max-width: 1080px;
+    nav,
+    header,
+    main,
+    footer {
+      max-width: 1120px;
       margin: 0 auto;
+    }
+
+    nav {
       padding: 20px 24px;
       display: flex;
       gap: 20px;
@@ -65,14 +73,10 @@
     }
 
     header {
-      max-width: 1080px;
-      margin: 0 auto;
       padding: 72px 24px 48px;
     }
 
     main {
-      max-width: 1080px;
-      margin: 0 auto;
       padding: 0 24px 80px;
     }
 
@@ -81,27 +85,34 @@
       border-bottom: 1px solid var(--line);
     }
 
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
     h1 {
       font-size: 44px;
       line-height: 1.2;
-      margin: 0 0 16px;
+      margin-bottom: 16px;
       letter-spacing: 0;
     }
 
     h2 {
       font-size: 28px;
-      margin: 0 0 24px;
+      margin-bottom: 24px;
       letter-spacing: 0;
     }
 
     h3 {
       font-size: 22px;
-      margin: 0 0 12px;
+      margin-bottom: 12px;
       letter-spacing: 0;
     }
 
     p {
-      margin: 0 0 16px;
+      margin-bottom: 16px;
       color: var(--text);
     }
 
@@ -127,16 +138,20 @@
       margin-bottom: 28px;
     }
 
+    .lead,
+    .section-intro {
+      max-width: 890px;
+      color: #d1d5db;
+    }
+
     .lead {
       font-size: 18px;
-      max-width: 850px;
-      color: #d1d5db;
     }
 
     .links {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
       margin-top: 28px;
     }
 
@@ -145,7 +160,7 @@
       padding: 10px 14px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: var(--card-alt);
+      background: var(--panel-2);
       color: var(--text);
     }
 
@@ -161,8 +176,12 @@
       margin-top: 24px;
     }
 
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+
     .card {
-      background: var(--card);
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 24px;
@@ -184,20 +203,27 @@
       font-size: 13px;
       color: var(--accent);
       border: 1px solid rgba(56, 189, 248, 0.35);
-      background: var(--accent-soft);
+      background: rgba(56, 189, 248, 0.12);
       padding: 4px 10px;
       border-radius: 999px;
     }
 
     .status {
-      color: #c4b5fd;
+      color: var(--accent-2);
       border-color: rgba(196, 181, 253, 0.35);
       background: rgba(196, 181, 253, 0.10);
     }
 
-    .section-intro {
-      max-width: 850px;
-      color: #d1d5db;
+    .verified {
+      color: var(--good);
+      border-color: rgba(134, 239, 172, 0.35);
+      background: rgba(134, 239, 172, 0.10);
+    }
+
+    .planned {
+      color: var(--warn);
+      border-color: rgba(253, 230, 138, 0.35);
+      background: rgba(253, 230, 138, 0.10);
     }
 
     .label {
@@ -208,15 +234,50 @@
       margin: 18px 0 6px;
     }
 
+    .split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .mini-panel {
+      border-top: 1px solid var(--soft-line);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .metric {
+      border: 1px solid var(--soft-line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--panel-2);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     footer {
-      max-width: 1080px;
-      margin: 0 auto;
       padding: 32px 24px 56px;
       color: var(--muted);
       font-size: 14px;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 760px) {
       nav {
         justify-content: flex-start;
         flex-wrap: wrap;
@@ -232,6 +293,10 @@
 
       .subtitle {
         font-size: 20px;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -253,8 +318,8 @@
     <p class="lead">
       약 9년간 자동차 내비게이션 지도 데이터 운영, 도로 네트워크 유지보수, 배포 검증,
       VOC 이슈 분석, OEM 지원, HD Map / ADAS 데이터 지원 업무를 수행했습니다.
-      GIS, QGIS, PostGIS 기반의 실무형 도구를 설계하며 반복적인 지도 데이터 QA 업무를
-      더 명확하고 검증 가능한 workflow로 개선하는 데 집중하고 있습니다.
+      최근에는 QGIS, PostGIS, 공공 Open API, 정적 대시보드를 활용해 반복적인 지도 데이터 QA를
+      검증 가능한 workflow와 운영 도구로 옮기는 프로젝트를 진행하고 있습니다.
     </p>
 
     <div class="links">
@@ -269,15 +334,16 @@
       <h2>About</h2>
       <p>
         저는 자동차 내비게이션 지도 데이터 운영 현장에서 도로 네트워크, 검색, 경로 안내,
-        배포 전후 검증과 관련된 문제를 다뤄왔습니다. 단순한 기능 구현보다 실제 QA 업무에서
-        반복적으로 발생하는 확인 절차를 정의하고, 이를 GIS 기반 도구와 데이터 처리 흐름으로
-        개선하는 데 강점이 있습니다.
+        배포 전후 검증과 관련된 문제를 다뤄왔습니다. 개발 자체보다 중요한 것은 QA 대상,
+        판정 기준, 반복 확인 절차를 명확히 정의하고 이를 실무에서 사용할 수 있는 도구로
+        정리하는 일이라고 보고 있습니다.
       </p>
       <p>
-        최근에는 QGIS Python plugin, Kakao/Naver route comparison, Open API 기반 보호구역
-        변경 감지, PostgreSQL/PostGIS 공간 데이터 관리처럼 navigation data QA와 직접 연결되는
-        프로젝트를 진행하고 있습니다. AI coding tools는 필요한 경우 보조적으로 활용하지만,
-        핵심은 도메인 지식, QA workflow 설계, 데이터 검증 기준을 실제 도구로 옮기는 일입니다.
+        현재 포트폴리오의 중심은 navigation data QA 자동화입니다. QGIS Kakao Roadview Bridge는
+        현장 확인과 지도 화면을 연결하는 desktop QA tool이고, Safety Zone Change Monitoring
+        System은 공공 보호구역 데이터의 변화와 도로 링크 영향 후보를 추적하는 운영형 데이터
+        프로젝트입니다. AI coding tools는 보조적으로 활용하지만, 핵심은 도메인 지식과 QA workflow
+        설계를 실제 검증 가능한 산출물로 만드는 과정입니다.
       </p>
 
       <div class="grid">
@@ -299,12 +365,12 @@
     <section id="projects">
       <h2>Projects</h2>
       <p class="section-intro">
-        프로젝트는 구현 완료 범위와 확장 계획을 구분해 정리했습니다. 현재 목표는 완성된 웹서비스를
-        과장해서 보여주는 것이 아니라, navigation data QA 문제를 어떤 방식으로 도구화하고 있는지
-        명확하게 설명하는 것입니다.
+        아래 프로젝트는 구현된 범위, 검증 중인 범위, 계획된 확장을 구분해 정리했습니다.
+        완성된 서비스처럼 포장하기보다 실제 navigation data QA 문제를 어떻게 구조화하고
+        도구화하고 있는지 보여주는 데 초점을 두었습니다.
       </p>
 
-      <div class="grid">
+      <div class="grid project-grid">
         <div class="card">
           <div class="tag-row">
             <span class="tag">QGIS Python Plugin</span>
@@ -316,30 +382,118 @@
             navigation map QA workflow를 지원하는 QGIS Python plugin입니다.
           </p>
 
-          <span class="label">Implemented / In Progress</span>
-          <ul>
-            <li>QGIS canvas와 Kakao Map / Roadview 화면 연동</li>
-            <li>Kakao Local 기반 장소 및 주소 검색 workflow</li>
-            <li>Kakao Mobility Route 결과를 활용한 경로 확인</li>
-            <li>route geometry, guidance points, search results를 QGIS layer로 표현</li>
-            <li>navigation data QA 과정에서 로드뷰와 공간 데이터를 함께 확인하는 분석 흐름 지원</li>
-          </ul>
+          <div class="split">
+            <div>
+              <span class="label">Implemented / In Progress</span>
+              <ul>
+                <li>QGIS canvas와 Kakao Map / Roadview 화면 연동</li>
+                <li>Kakao Local 기반 장소 및 주소 검색 workflow</li>
+                <li>Kakao Mobility Route 결과를 활용한 경로 확인</li>
+                <li>route geometry, guidance points, search results를 QGIS layer로 표현</li>
+                <li>로드뷰 확인과 공간 데이터 검토를 함께 수행하는 지도 QA 분석 흐름 지원</li>
+              </ul>
+            </div>
+            <div>
+              <span class="label">Next Step</span>
+              <p>
+                카카오/네이버 경로 비교 기능과 QA 결과 export workflow를 보강해, 다중 provider
+                route QA 시스템의 desktop analysis tool로 확장할 계획입니다.
+              </p>
+            </div>
+          </div>
 
-          <span class="label">Next Step</span>
+          <div class="links">
+            <a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="tag-row">
+            <span class="tag">Open API / PostGIS</span>
+            <span class="tag verified">MVP Implemented / Expanding</span>
+            <span class="tag status">Updated 2026-07-23</span>
+          </div>
+          <h3>Safety Zone Change Monitoring System</h3>
           <p>
-            경로 비교 기능과 QA 결과 export workflow를 보강해, 다중 provider route QA 시스템의
-            desktop analysis tool로 확장할 계획입니다.
+            경찰청 전국 보호구역 Open API 데이터를 수집해 원본 응답, 정규화 결과, 현재 상태,
+            변경 이벤트를 PostgreSQL/PostGIS에 저장하고, 변경이 있을 때만 알림과 대시보드
+            산출물로 확인할 수 있게 만든 monitoring project입니다.
           </p>
 
-          <a href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">
-            View Repository
-          </a>
+          <div class="metrics" aria-label="Safety Zone project highlights">
+            <div class="metric">
+              <strong>09:00 KST</strong>
+              <span>daily run target</span>
+            </div>
+            <div class="metric">
+              <strong>Polygon / Point</strong>
+              <span>current and change layers</span>
+            </div>
+            <div class="metric">
+              <strong>v2.3</strong>
+              <span>standard-link review buckets</span>
+            </div>
+            <div class="metric">
+              <strong>Leaflet</strong>
+              <span>static dashboard prototype</span>
+            </div>
+          </div>
+
+          <div class="split mini-panel">
+            <div>
+              <span class="label">Implemented / Verified Scope</span>
+              <ul>
+                <li>보호구역 API 수집, 원본 snapshot 저장, 정규화 pipeline 구성</li>
+                <li>Polygon, facility Point, 통합 zone group 모델 분리</li>
+                <li>신규, 속성 변경, 도형 변경, 위치 변경, 삭제, 누락 검토 이벤트 저장</li>
+                <li>운영 상태 점검 SQL과 변경 이벤트 검증 절차 정리</li>
+                <li>Telegram/Slack 알림 구조와 변경 있을 때만 알림 발송하는 흐름 구현</li>
+                <li>pytest 기반 API, diff, normalize, pipeline, notification 테스트 구성</li>
+              </ul>
+            </div>
+            <div>
+              <span class="label">Dashboard / Operations</span>
+              <ul>
+                <li>JSON/GeoJSON export로 정적 dashboard data 생성</li>
+                <li>Leaflet 기반 지도에서 현재, 신규, 변경, 삭제(검토) layer 표시</li>
+                <li>최근 변경 이벤트와 모니터링 실행 이력을 검색/필터링하는 UI 구성</li>
+                <li>전국 수집 전환을 위한 시군구 코드 파일과 baseline 적재 정책 문서화</li>
+                <li>GitHub Actions self-hosted runner 또는 Windows scheduler 기반 09:00 KST 실행 준비</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="split mini-panel">
+            <div>
+              <span class="label">Standard Link / QGIS QA</span>
+              <ul>
+                <li>기존 표준노드링크 PostGIS DB를 읽는 계약과 QC 기준 정리</li>
+                <li>NGII 도로중심선 전국통판 및 0.5m 단순화본을 보조 기준으로 검토</li>
+                <li>보호구역과 도로 link candidate / excluded / coverage review view 설계</li>
+                <li>v2.3 review bucket으로 자동반영 후보와 수동검토 후보를 보수적으로 분리</li>
+                <li>QGIS 스타일과 케이스북으로 입체도로, 지하차도, 회전교차로, 근접 평행 오탐/누락 패턴 기록</li>
+              </ul>
+            </div>
+            <div>
+              <span class="label">Still In Progress</span>
+              <p>
+                표준링크 매칭은 자동 확정 반영 단계가 아니라 candidate generation과 QGIS 검수
+                기준을 다듬는 단계입니다. 전국 baseline 이후 실제 변경 이벤트만 신규/변경/삭제로
+                표시하는 운영 규칙도 계속 검증 중입니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="links">
+            <a class="button" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">View Repository</a>
+            <a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">Dashboard Prototype</a>
+          </div>
         </div>
 
         <div class="card">
           <div class="tag-row">
             <span class="tag">Route QA</span>
-            <span class="tag status">Planned Extension / In Progress</span>
+            <span class="tag planned">Planned Extension / In Progress</span>
           </div>
           <h3>Multi-Provider Navigation Route QA System</h3>
           <p>
@@ -355,43 +509,6 @@
             <li>QGIS plugin을 desktop analysis tool로 활용</li>
             <li>exported route comparison result를 향후 web dashboard에서 시각화하는 방향 검토</li>
           </ul>
-
-          <span class="label">Current Position</span>
-          <p>
-            아직 완성된 제품이 아니라 QGIS 기반 분석 도구에서 출발하는 확장 프로젝트입니다.
-            구현된 범위와 계획된 기능은 별도로 구분해 관리할 예정입니다.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="tag-row">
-            <span class="tag">Open API / PostGIS</span>
-            <span class="tag status">MVP / Active Development</span>
-          </div>
-          <h3>Safety Zone Change Monitoring System</h3>
-          <p>
-            공공 Open API 기반 보호구역 데이터를 정기적으로 수집하고, 새로 추가되거나 변경되거나
-            누락된 보호구역을 감지하기 위한 monitoring project입니다.
-          </p>
-
-          <span class="label">MVP Direction</span>
-          <ul>
-            <li>매일 09:00 KST 기준 scheduled collection 계획</li>
-            <li>신규, 변경, 누락 보호구역 감지</li>
-            <li>PostgreSQL/PostGIS에 change history 저장</li>
-            <li>변경사항이 있을 때만 notification 발송</li>
-            <li>운영 데이터의 변화 이력을 QA 관점에서 추적</li>
-          </ul>
-
-          <span class="label">Planned Extension</span>
-          <p>
-            표준 노드링크 매칭, 보호구역과 도로 link의 공간 관계 분석, web dashboard 기반
-            변경 이력 시각화를 단계적으로 확장할 계획입니다.
-          </p>
-
-          <a href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">
-            View Repository
-          </a>
         </div>
       </div>
     </section>
@@ -404,9 +521,10 @@
       </p>
       <ul>
         <li>QGIS Roadview 기반 지도 QA workflow를 만든 이유</li>
+        <li>보호구역 Open API 변경 감지 MVP와 운영 검증 기준</li>
+        <li>전국 baseline 적재와 신규/변경/삭제 이벤트 해석 기준</li>
+        <li>표준링크 매칭 v2.3 review bucket과 QGIS 육안검수 사례</li>
         <li>Kakao / Naver route comparison이 navigation QA에서 필요한 이유</li>
-        <li>보호구역 변경 감지 시스템의 MVP 설계와 검증 기준</li>
-        <li>PostGIS 기반 공간 매칭과 도로 link QA 실무 메모</li>
       </ul>
     </section>
 
