@@ -318,7 +318,7 @@
     <p class="lead">
       약 9년간 자동차 내비게이션 지도 데이터 운영, 도로 네트워크 유지보수, 배포 검증,
       VOC 이슈 분석, OEM 지원, HD Map / ADAS 데이터 지원 업무를 수행했습니다.
-      최근에는 QGIS, PostGIS, 공공 Open API, 정적 대시보드를 활용해 반복적인 지도 데이터 QA를
+      최근에는 QGIS, PostGIS, 공공 Open API, 지도 대시보드를 활용해 반복적인 지도 데이터 QA를
       검증 가능한 workflow와 운영 도구로 옮기는 프로젝트를 진행하고 있습니다.
     </p>
 
@@ -341,9 +341,9 @@
       <p>
         현재 포트폴리오의 중심은 navigation data QA 자동화입니다. QGIS Kakao Roadview Bridge는
         현장 확인과 지도 화면을 연결하는 desktop QA tool이고, Safety Zone Change Monitoring
-        System은 공공 보호구역 데이터의 변화와 도로 링크 영향 후보를 추적하는 운영형 데이터
-        프로젝트입니다. AI coding tools는 보조적으로 활용하지만, 핵심은 도메인 지식과 QA workflow
-        설계를 실제 검증 가능한 산출물로 만드는 과정입니다.
+        System은 공공 보호구역 데이터의 변화, 운영 이력, 지도/Roadview 기반 검수 흐름까지
+        연결하는 운영형 데이터 프로젝트입니다. AI coding tools는 보조적으로 활용하지만, 핵심은
+        도메인 지식과 QA workflow 설계를 실제 검증 가능한 산출물로 만드는 과정입니다.
       </p>
 
       <div class="grid">
@@ -411,13 +411,13 @@
           <div class="tag-row">
             <span class="tag">Open API / PostGIS</span>
             <span class="tag verified">MVP Implemented / Expanding</span>
-            <span class="tag status">Updated 2026-07-23</span>
+            <span class="tag status">Updated 2026-07-24</span>
           </div>
           <h3>Safety Zone Change Monitoring System</h3>
           <p>
             경찰청 전국 보호구역 Open API 데이터를 수집해 원본 응답, 정규화 결과, 현재 상태,
-            변경 이벤트를 PostgreSQL/PostGIS에 저장하고, 변경이 있을 때만 알림과 대시보드
-            산출물로 확인할 수 있게 만든 monitoring project입니다.
+            변경 이벤트를 PostgreSQL/PostGIS에 저장하고, 변경이 있을 때만 알림과 웹 대시보드에서
+            지도 기반으로 확인할 수 있게 만든 monitoring project입니다.
           </p>
 
           <div class="metrics" aria-label="Safety Zone project highlights">
@@ -434,8 +434,12 @@
               <span>standard-link review buckets</span>
             </div>
             <div class="metric">
-              <strong>Leaflet</strong>
-              <span>static dashboard prototype</span>
+              <strong>OSM / Kakao</strong>
+              <span>map and Roadview dashboard</span>
+            </div>
+            <div class="metric">
+              <strong>3 types</strong>
+              <span>child, senior, disabled zones</span>
             </div>
           </div>
 
@@ -448,6 +452,7 @@
                 <li>신규, 속성 변경, 도형 변경, 위치 변경, 삭제, 누락 검토 이벤트 저장</li>
                 <li>운영 상태 점검 SQL과 변경 이벤트 검증 절차 정리</li>
                 <li>Telegram/Slack 알림 구조와 변경 있을 때만 알림 발송하는 흐름 구현</li>
+                <li>API 0건 응답과 429 rate limit을 운영 이슈로 구분하는 처리 기준 정리</li>
                 <li>pytest 기반 API, diff, normalize, pipeline, notification 테스트 구성</li>
               </ul>
             </div>
@@ -455,9 +460,14 @@
               <span class="label">Dashboard / Operations</span>
               <ul>
                 <li>JSON/GeoJSON export로 정적 dashboard data 생성</li>
-                <li>Leaflet 기반 지도에서 현재, 신규, 변경, 삭제(검토) layer 표시</li>
-                <li>최근 변경 이벤트와 모니터링 실행 이력을 검색/필터링하는 UI 구성</li>
-                <li>전국 수집 전환을 위한 시군구 코드 파일과 baseline 적재 정책 문서화</li>
+                <li>GitHub Pages 기반 대시보드 배포: <a href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">safetyzone.yjkim.dev</a></li>
+                <li>OSM/Kakao 지도 전환과 선택 위치 Kakao Roadview 확인 기능 구현</li>
+                <li>어린이, 노인, 장애인, 기타 보호구역 종류별 현재 layer 분리</li>
+                <li>신규, 변경, 삭제(검토) 변경 상태 layer와 팝업 상세 표시</li>
+                <li>최근 변경, 현재 객체, 모니터링 이력 탭과 검색/필터 UI 구성</li>
+                <li>실패 run을 숨기지 않고 실패 사유를 표시하며 민감 query parameter는 masking</li>
+                <li>모바일 지도 검수를 위한 하단 패널 접기/열기 및 Roadview panel 위치/크기 조정</li>
+                <li>전국 수집 전환을 위한 시군구 코드, chunk 파일, baseline 적재 정책 문서화</li>
                 <li>GitHub Actions self-hosted runner 또는 Windows scheduler 기반 09:00 KST 실행 준비</li>
               </ul>
             </div>
@@ -477,16 +487,16 @@
             <div>
               <span class="label">Still In Progress</span>
               <p>
-                표준링크 매칭은 자동 확정 반영 단계가 아니라 candidate generation과 QGIS 검수
-                기준을 다듬는 단계입니다. 전국 baseline 이후 실제 변경 이벤트만 신규/변경/삭제로
-                표시하는 운영 규칙도 계속 검증 중입니다.
+                대시보드는 운영 검수용 산출물로 배포되어 있지만, 전국 기준선 DB 적재는 API 429
+                제한 때문에 chunk 단위 재시도와 안정화가 남아 있습니다. 표준링크 매칭도 자동 확정
+                반영 단계가 아니라 candidate generation과 QGIS 검수 기준을 다듬는 단계입니다.
               </p>
             </div>
           </div>
 
           <div class="links">
             <a class="button" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">View Repository</a>
-            <a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">Dashboard Prototype</a>
+            <a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">Live Dashboard</a>
           </div>
         </div>
 
@@ -523,6 +533,7 @@
         <li>QGIS Roadview 기반 지도 QA workflow를 만든 이유</li>
         <li>보호구역 Open API 변경 감지 MVP와 운영 검증 기준</li>
         <li>전국 baseline 적재와 신규/변경/삭제 이벤트 해석 기준</li>
+        <li>OSM/Kakao 지도와 Roadview를 활용한 보호구역 변경 검수 대시보드 설계</li>
         <li>표준링크 매칭 v2.3 review bucket과 QGIS 육안검수 사례</li>
         <li>Kakao / Naver route comparison이 navigation QA에서 필요한 이유</li>
       </ul>
