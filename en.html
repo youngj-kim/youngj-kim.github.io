@@ -343,11 +343,7 @@
         and repeatable validation steps that make map data operations easier to inspect and explain.
       </p>
       <p>
-        The center of this portfolio is navigation data QA automation. QGIS Kakao Roadview Bridge
-        connects field-style map review with a desktop GIS workflow. Safety Zone Change Monitoring
-        System connects public safety-zone data changes, operational run history, and map/Roadview
-        based review into a practical data operations project. AI coding tools may support the work,
-        but the main value is domain knowledge, QA workflow design, and verifiable deliverables.
+        This portfolio connects navigation data QA automation with public-data map services. Kakao and NAVER QGIS plugins support desktop review and file-based route comparison; the safety-zone monitor and Military Family Benefit Map turn public data into searchable maps and change-review workflows. Domain knowledge, QA criteria, and verifiable deliverables guide the work.
       </p>
 
       <div class="grid">
@@ -368,163 +364,84 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <p class="section-intro">
-        These projects separate implemented scope, work in progress, and planned extensions.
-        The goal is not to present unfinished work as finished software, but to show how practical
-        navigation data QA problems are structured, tested, and turned into tools.
-      </p>
-
+      <p class="section-intro">Projects reviewed against public repository READMEs on 2026-10-17. Implemented features, documented validation, and remaining work are described separately.</p>
       <div class="grid project-grid">
-        <div class="card">
-          <div class="tag-row">
-            <span class="tag">QGIS Python Plugin</span>
-            <span class="tag status">Functional Prototype / Active Development</span>
-          </div>
+        <article class="card">
+          <div class="tag-row"><span class="tag">QGIS / Python / Kakao APIs</span><span class="tag status">Functional Prototype / Active Development</span></div>
           <h3>QGIS Kakao Roadview Bridge</h3>
-          <p>
-            A QGIS Python plugin that connects the QGIS canvas with Kakao Map, Roadview,
-            Local Search, and Kakao Mobility Route to support navigation map QA workflows.
-          </p>
-
-          <div class="split">
-            <div>
-              <span class="label">Implemented / In Progress</span>
-              <ul>
-                <li>QGIS canvas synchronization with Kakao Map and Roadview</li>
-                <li>Kakao Local place and address search workflow</li>
-                <li>Route review using Kakao Mobility Route results</li>
-                <li>Route geometry, guidance points, and search results represented as QGIS layers</li>
-                <li>Map QA workflow that combines Roadview review with spatial data inspection</li>
-              </ul>
-            </div>
-            <div>
-              <span class="label">Next Step</span>
-              <p>
-                Extend the plugin toward a multi-provider route QA workflow by adding Kakao/Naver
-                route comparison and exportable QA result data.
-              </p>
-            </div>
-          </div>
-
-          <div class="links">
-            <a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag-row">
-            <span class="tag">Open API / PostGIS</span>
-            <span class="tag verified">MVP Implemented / Expanding</span>
-            <span class="tag status">Updated 2026-07-24</span>
-          </div>
-          <h3>Safety Zone Change Monitoring System</h3>
-          <p>
-            A monitoring project that collects Korean police safety-zone Open API data, stores raw
-            responses, normalized records, current state, and change events in PostgreSQL/PostGIS,
-            and exposes meaningful changes through notifications and a map-based web dashboard.
-          </p>
-
-          <div class="metrics" aria-label="Safety Zone project highlights">
-            <div class="metric">
-              <strong>09:00 KST</strong>
-              <span>daily run target</span>
-            </div>
-            <div class="metric">
-              <strong>Polygon / Point</strong>
-              <span>current and change layers</span>
-            </div>
-            <div class="metric">
-              <strong>v2.3</strong>
-              <span>standard-link review buckets</span>
-            </div>
-            <div class="metric">
-              <strong>OSM / Kakao</strong>
-              <span>map and Roadview dashboard</span>
-            </div>
-            <div class="metric">
-              <strong>3 types</strong>
-              <span>child, senior, disabled zones</span>
-            </div>
-          </div>
-
-          <div class="split mini-panel">
-            <div>
-              <span class="label">Implemented / Verified Scope</span>
-              <ul>
-                <li>Safety-zone API collection, raw snapshot storage, and normalization pipeline</li>
-                <li>Separated Polygon, facility Point, and integrated zone group models</li>
-                <li>Change events for new, attribute change, geometry change, point change, deletion, and missing-review cases</li>
-                <li>Operational SQL checks and change-event verification procedures</li>
-                <li>Telegram/Slack notification flow that sends notifications only when relevant changes exist</li>
-                <li>Handling rules for empty API responses and 429 rate-limit operational issues</li>
-                <li>pytest coverage for API, diff, normalization, pipeline, and notification logic</li>
-              </ul>
-            </div>
-            <div>
-              <span class="label">Dashboard / Operations</span>
-              <ul>
-                <li>Static dashboard data export using JSON/GeoJSON</li>
-                <li>GitHub Pages dashboard deployment: <a href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">safetyzone.yjkim.dev</a></li>
-                <li>OSM/Kakao map switching and Kakao Roadview review for selected locations</li>
-                <li>Current layers separated by child, senior, disabled, and other safety-zone types</li>
-                <li>Change-state layers for new, changed, and deleted/review-needed objects with popup details</li>
-                <li>Recent changes, current objects, and monitoring run history tabs with search/filter UI</li>
-                <li>Failed runs are visible with masked sensitive query parameters in failure messages</li>
-                <li>Mobile review flow with collapsible bottom panel and draggable/resizable Roadview panel</li>
-                <li>Nationwide rollout docs for SGG codes, chunk files, and baseline loading policy</li>
-                <li>Prepared 09:00 KST run flow using GitHub Actions self-hosted runner or Windows scheduler</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="split mini-panel">
-            <div>
-              <span class="label">Standard Link / QGIS QA</span>
-              <ul>
-                <li>Documented read contract and QC rules for the existing standard node-link PostGIS database</li>
-                <li>Using nationwide NGII road centerline and 0.5m simplified geometry as a supporting reference</li>
-                <li>Designed candidate, excluded, and coverage review views for safety-zone to road-link matching</li>
-                <li>v2.3 review buckets separate auto-apply candidates from manual-review candidates conservatively</li>
-                <li>QGIS styles and casebooks record elevated roads, underpasses, roundabouts, near-parallel false positives, and missing-link patterns</li>
-              </ul>
-            </div>
-            <div>
-              <span class="label">Still In Progress</span>
-              <p>
-                The dashboard is deployed as an operational review artifact, but nationwide baseline
-                database loading still needs chunk-based retries and stabilization due to API 429 limits.
-                Standard-link matching is still in candidate generation and QGIS review criteria refinement,
-                not automatic confirmed matching.
-              </p>
-            </div>
-          </div>
-
-          <div class="links">
-            <a class="button" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">View Repository</a>
-            <a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">Live Dashboard</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag-row">
-            <span class="tag">Route QA</span>
-            <span class="tag planned">Planned Extension / In Progress</span>
-          </div>
-          <h3>Multi-Provider Navigation Route QA System</h3>
-          <p>
-            A planned extension of the QGIS Kakao plugin to compare Kakao and Naver route results
-            and analyze route quality and guidance differences.
-          </p>
-
-          <span class="label">Planned Scope</span>
+          <p>A QGIS plugin connecting Kakao Map and Roadview with location review, place search, driving routes, and guidance-point inspection in one map QA workflow.</p>
+          <span class="label">Implemented Scope</span>
           <ul>
-            <li>Compare Kakao / Naver route geometry</li>
-            <li>Analyze distance, duration, and turn-by-turn guidance differences</li>
-            <li>Review route divergence, missing guidance, and abnormal detour candidates</li>
-            <li>Use the QGIS plugin as the desktop analysis tool</li>
-            <li>Consider a future web dashboard for exported route comparison results</li>
+            <li>Bidirectional map position/zoom synchronization and Roadview position/direction layers</li>
+            <li>Kakao Local search and Mobility routes with up to five waypoints, avoidance and vehicle options</li>
+            <li>Route/guidance history import and export to GeoPackage, GeoJSON, Shapefile, and GPX</li>
+            <li>Dock and external browser modes with adjustable map/Roadview layout</li>
           </ul>
-        </div>
+          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>Targets QGIS 3.34+ and QGIS 4 / Qt 6. The exact 3.34 runtime remains unverified; fare comparison in development candidate 1.2.2 is a separate validation scope.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">QGIS / Python / NAVER APIs</span><span class="tag status">Experimental Development Version 0.2.0</span></div>
+          <h3>Naver Map QGIS Bridge</h3>
+          <p>A plugin synchronizing the QGIS canvas with NAVER Map and Roadview, turning place/address search and Directions 5 routes into GIS layers and reusable history files.</p>
+          <span class="label">Implemented Scope</span>
+          <ul>
+            <li>External browser mode for QGIS 3 and embedded web view for QGIS 4</li>
+            <li>Map position/zoom synchronization, Roadview direction and API-provided capture dates</li>
+            <li>NAVER API HUB local search, Geocoding address search, and direct coordinate input</li>
+            <li>Routes/guidance points, up to five waypoints, history import/export to GPKG, GeoJSON, SHP, and GPX</li>
+          </ul>
+          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>The README records user confirmation on 2026-10-15 and offline checks in QGIS 3.44.14/4.2.2. The exact 3.34 runtime and full live API scenarios across environments still need verification.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/navermap_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/navermap_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">Python / Supabase / PostGIS / GitHub Actions</span><span class="tag status">MVP Implemented / Expanding</span></div>
+          <h3>Safety Zone Change Monitoring System</h3>
+          <p>A data operations project preserving raw and normalized police safety-zone API snapshots, detecting additions, deletions, attribute and geometry changes, and supporting review through notifications and a map dashboard.</p>
+          <span class="label">Implemented Scope</span>
+          <ul>
+            <li>Polygon, facility Point, integrated zone groups, and change-event history</li>
+            <li>Supabase PostgreSQL/PostGIS and GitHub-hosted runner; six scheduled chunks at 20-minute intervals from 09:00 to 10:40 KST</li>
+            <li>Province-level GeoJSON and lazy loading, nationwide search, repeated-change timelines, and KR/EN views</li>
+            <li>OSM/Kakao maps, Roadview, change-triggered Slack/Telegram notifications, and run history</li>
+            <li>Full data refresh on success, run-history refresh on failure, fetch/rebase push retries, and Pages deployment after monitoring</li>
+          </ul>
+          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>Standard-link and NGII road-centerline candidate review remains in local PostGIS/QGIS. Confirmed automatic road matching and the success of individual production runs require separate verification.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">Live Website</a><a class="button" href="https://github.com/youngj-kim/safetyzone_automation/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">HTML / CSS / JavaScript / Kakao Maps</span><span class="tag status">Static Web Map / Automated Change Review</span></div>
+          <h3>Military Family Benefit Map</h3>
+          <p>A web map for searching official Military Manpower Administration benefit facilities and Ministry of National Defense off-base marts, connecting public data with facility search, directions, and change review.</p>
+          <span class="label">Implemented Scope</span>
+          <ul>
+            <li>Region, 22 business categories and benefit-type filters, marker clustering, and viewport search</li>
+            <li>Benefit details, contacts, original sources, Kakao/Naver directions, and mobile map/list views</li>
+            <li>Official mart records preserved separately from address-geocoded coordinates</li>
+            <li>Monthly official-source comparison at 09:00 KST on the first day, reports, candidate branches, draft PRs, and Telegram notifications</li>
+            <li>Empty-response, duplicate-ID and over-25% drop checks before reviewed data updates</li>
+          </ul>
+          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>The MMA snapshot was collected on 2026-10-16; the MND list is dated 2026-04-28. Geocoded positions are distinguished from official coordinates. Benefits and operating conditions should be checked with the original source and facility.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/military-family-benefit-map" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://benefits.yjkim.dev" target="_blank" rel="noopener">Live Website</a><a class="button" href="https://github.com/youngj-kim/military-family-benefit-map/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">QGIS / GeoPackage / Route Comparison</span><span class="tag status">GPKG Comparison Implemented / Expanding</span></div>
+          <h3>Multi-Provider Navigation Route QA</h3>
+          <p>The Kakao plugin now opens Kakao and Naver GPKG route histories for A/B review on a map and comparison table, advancing the previous plan into an implemented file-based comparison workflow.</p>
+          <span class="label">Implemented Scope</span>
+          <ul>
+            <li>Supports EPSG:4326 GPKGs containing kakao_route_history or naver_route_history</li>
+            <li>Distance, duration, query timestamps, and B−A differences</li>
+            <li>Warnings for endpoint differences over 20 m or different waypoints</li>
+            <li>Blue solid A / orange dashed B route overlays and overlay removal</li>
+          </ul>
+          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>Development candidate 1.2.2 adds toll and estimated taxi fare comparison. Times/fares are query-time estimates; automatic missing-guidance/detour detection and a web comparison dashboard remain future work.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
       </div>
     </section>
 
@@ -539,7 +456,7 @@
         <li>Safety-zone Open API change monitoring MVP and operational validation criteria</li>
         <li>Nationwide baseline loading and interpretation of new/changed/deleted events</li>
         <li>Safety-zone change review dashboard using OSM/Kakao maps and Roadview</li>
-        <li>Standard-link matching v2.3 review buckets and QGIS visual QA cases</li>
+        <li>Standard-link matching review criteria and QGIS visual QA cases</li>
         <li>Why Kakao / Naver route comparison matters in navigation QA</li>
       </ul>
     </section>

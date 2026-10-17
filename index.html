@@ -342,11 +342,7 @@
         정리하는 일이라고 보고 있습니다.
       </p>
       <p>
-        현재 포트폴리오의 중심은 navigation data QA 자동화입니다. QGIS Kakao Roadview Bridge는
-        현장 확인과 지도 화면을 연결하는 desktop QA tool이고, Safety Zone Change Monitoring
-        System은 공공 보호구역 데이터의 변화, 운영 이력, 지도/Roadview 기반 검수 흐름까지
-        연결하는 운영형 데이터 프로젝트입니다. AI coding tools는 보조적으로 활용하지만, 핵심은
-        도메인 지식과 QA workflow 설계를 실제 검증 가능한 산출물로 만드는 과정입니다.
+        내비게이션 데이터 QA 자동화와 공공 데이터 지도 서비스를 중심으로 프로젝트를 진행합니다. 카카오·네이버 QGIS 플러그인과 파일 기반 경로 비교는 데스크톱 검수를 지원하고, 보호구역 모니터링과 병역명문가 혜택 지도는 공공 데이터의 검색·시각화·변경 검토를 연결합니다. 도메인 지식과 QA 기준을 실제 확인 가능한 산출물로 만드는 데 집중합니다.
       </p>
 
       <div class="grid">
@@ -367,162 +363,84 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <p class="section-intro">
-        아래 프로젝트는 구현된 범위, 검증 중인 범위, 계획된 확장을 구분해 정리했습니다.
-        완성된 서비스처럼 포장하기보다 실제 navigation data QA 문제를 어떻게 구조화하고
-        도구화하고 있는지 보여주는 데 초점을 두었습니다.
-      </p>
-
+      <p class="section-intro">2026-10-17 공개 저장소 README를 확인해 정리했습니다. 구현 기능, 문서에 기록된 검증 범위와 추가 확인이 필요한 내용을 구분했습니다.</p>
       <div class="grid project-grid">
-        <div class="card">
-          <div class="tag-row">
-            <span class="tag">QGIS Python Plugin</span>
-            <span class="tag status">Functional Prototype / Active Development</span>
-          </div>
+        <article class="card">
+          <div class="tag-row"><span class="tag">QGIS / Python / Kakao APIs</span><span class="tag status">기능형 프로토타입 · 개발 중</span></div>
           <h3>QGIS Kakao Roadview Bridge</h3>
-          <p>
-            QGIS canvas와 Kakao Map, Roadview, Local Search, Kakao Mobility Route를 연동해
-            navigation map QA workflow를 지원하는 QGIS Python plugin입니다.
-          </p>
-
-          <div class="split">
-            <div>
-              <span class="label">Implemented / In Progress</span>
-              <ul>
-                <li>QGIS canvas와 Kakao Map / Roadview 화면 연동</li>
-                <li>Kakao Local 기반 장소 및 주소 검색 workflow</li>
-                <li>Kakao Mobility Route 결과를 활용한 경로 확인</li>
-                <li>route geometry, guidance points, search results를 QGIS layer로 표현</li>
-                <li>로드뷰 확인과 공간 데이터 검토를 함께 수행하는 지도 QA 분석 흐름 지원</li>
-              </ul>
-            </div>
-            <div>
-              <span class="label">Next Step</span>
-              <p>
-                카카오/네이버 경로 비교 기능과 QA 결과 export workflow를 보강해, 다중 provider
-                route QA 시스템의 desktop analysis tool로 확장할 계획입니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="links">
-            <a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag-row">
-            <span class="tag">Open API / PostGIS</span>
-            <span class="tag verified">MVP Implemented / Expanding</span>
-            <span class="tag status">Updated 2026-07-24</span>
-          </div>
-          <h3>Safety Zone Change Monitoring System</h3>
-          <p>
-            경찰청 전국 보호구역 Open API 데이터를 수집해 원본 응답, 정규화 결과, 현재 상태,
-            변경 이벤트를 PostgreSQL/PostGIS에 저장하고, 변경이 있을 때만 알림과 웹 대시보드에서
-            지도 기반으로 확인할 수 있게 만든 monitoring project입니다.
-          </p>
-
-          <div class="metrics" aria-label="Safety Zone project highlights">
-            <div class="metric">
-              <strong>09:00 KST</strong>
-              <span>daily run target</span>
-            </div>
-            <div class="metric">
-              <strong>Polygon / Point</strong>
-              <span>current and change layers</span>
-            </div>
-            <div class="metric">
-              <strong>v2.3</strong>
-              <span>standard-link review buckets</span>
-            </div>
-            <div class="metric">
-              <strong>OSM / Kakao</strong>
-              <span>map and Roadview dashboard</span>
-            </div>
-            <div class="metric">
-              <strong>3 types</strong>
-              <span>child, senior, disabled zones</span>
-            </div>
-          </div>
-
-          <div class="split mini-panel">
-            <div>
-              <span class="label">Implemented / Verified Scope</span>
-              <ul>
-                <li>보호구역 API 수집, 원본 snapshot 저장, 정규화 pipeline 구성</li>
-                <li>Polygon, facility Point, 통합 zone group 모델 분리</li>
-                <li>신규, 속성 변경, 도형 변경, 위치 변경, 삭제, 누락 검토 이벤트 저장</li>
-                <li>운영 상태 점검 SQL과 변경 이벤트 검증 절차 정리</li>
-                <li>Telegram/Slack 알림 구조와 변경 있을 때만 알림 발송하는 흐름 구현</li>
-                <li>API 0건 응답과 429 rate limit을 운영 이슈로 구분하는 처리 기준 정리</li>
-                <li>pytest 기반 API, diff, normalize, pipeline, notification 테스트 구성</li>
-              </ul>
-            </div>
-            <div>
-              <span class="label">Dashboard / Operations</span>
-              <ul>
-                <li>JSON/GeoJSON export로 정적 dashboard data 생성</li>
-                <li>GitHub Pages 기반 대시보드 배포: <a href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">safetyzone.yjkim.dev</a></li>
-                <li>OSM/Kakao 지도 전환과 선택 위치 Kakao Roadview 확인 기능 구현</li>
-                <li>어린이, 노인, 장애인, 기타 보호구역 종류별 현재 layer 분리</li>
-                <li>신규, 변경, 삭제(검토) 변경 상태 layer와 팝업 상세 표시</li>
-                <li>최근 변경, 현재 객체, 모니터링 이력 탭과 검색/필터 UI 구성</li>
-                <li>실패 run을 숨기지 않고 실패 사유를 표시하며 민감 query parameter는 masking</li>
-                <li>모바일 지도 검수를 위한 하단 패널 접기/열기 및 Roadview panel 위치/크기 조정</li>
-                <li>전국 수집 전환을 위한 시군구 코드, chunk 파일, baseline 적재 정책 문서화</li>
-                <li>GitHub Actions self-hosted runner 또는 Windows scheduler 기반 09:00 KST 실행 준비</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="split mini-panel">
-            <div>
-              <span class="label">Standard Link / QGIS QA</span>
-              <ul>
-                <li>기존 표준노드링크 PostGIS DB를 읽는 계약과 QC 기준 정리</li>
-                <li>NGII 도로중심선 전국통판 및 0.5m 단순화본을 보조 기준으로 검토</li>
-                <li>보호구역과 도로 link candidate / excluded / coverage review view 설계</li>
-                <li>v2.3 review bucket으로 자동반영 후보와 수동검토 후보를 보수적으로 분리</li>
-                <li>QGIS 스타일과 케이스북으로 입체도로, 지하차도, 회전교차로, 근접 평행 오탐/누락 패턴 기록</li>
-              </ul>
-            </div>
-            <div>
-              <span class="label">Still In Progress</span>
-              <p>
-                대시보드는 운영 검수용 산출물로 배포되어 있지만, 전국 기준선 DB 적재는 API 429
-                제한 때문에 chunk 단위 재시도와 안정화가 남아 있습니다. 표준링크 매칭도 자동 확정
-                반영 단계가 아니라 candidate generation과 QGIS 검수 기준을 다듬는 단계입니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="links">
-            <a class="button" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">View Repository</a>
-            <a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">Live Dashboard</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag-row">
-            <span class="tag">Route QA</span>
-            <span class="tag planned">Planned Extension / In Progress</span>
-          </div>
-          <h3>Multi-Provider Navigation Route QA System</h3>
-          <p>
-            QGIS Kakao plugin의 확장 방향으로, Kakao와 Naver route 결과를 비교해 경로 품질과
-            안내 차이를 분석하는 QA workflow를 설계하고 있습니다.
-          </p>
-
-          <span class="label">Planned Scope</span>
+          <p>QGIS와 Kakao Map·Roadview를 연결해 위치 확인, 장소 검색, 자동차 경로와 안내 지점 검토를 하나의 지도 QA 환경에서 수행하는 플러그인입니다.</p>
+          <span class="label">구현 범위</span>
           <ul>
-            <li>Kakao / Naver route geometry 비교</li>
-            <li>distance, duration, turn-by-turn guidance 차이 분석</li>
-            <li>route divergence, missing guidance, abnormal detour 후보 확인</li>
-            <li>QGIS plugin을 desktop analysis tool로 활용</li>
-            <li>exported route comparison result를 향후 web dashboard에서 시각화하는 방향 검토</li>
+            <li>지도 이동·확대·축소 양방향 동기화, 로드뷰 위치·방향 레이어</li>
+            <li>Kakao Local 검색과 Kakao Mobility 경로, 최대 5개 경유지 및 회피·차량 옵션</li>
+            <li>경로·안내 이력 저장/불러오기와 GeoPackage, GeoJSON, Shapefile, GPX 내보내기</li>
+            <li>QGIS 도크와 외부 브라우저 연동, 지도·로드뷰 배치 및 탐색창 조절</li>
           </ul>
-        </div>
+          <div class="mini-panel"><span class="label">검증 범위 / 남은 작업</span><p>QGIS 3.34 이상과 QGIS 4 / Qt 6을 대상으로 개발합니다. 정확한 3.34 환경은 미검증이며, 개발 후보 1.2.2의 요금 비교는 별도 검증 범위입니다.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">QGIS / Python / NAVER APIs</span><span class="tag status">실험적 개발 버전 0.2.0</span></div>
+          <h3>Naver Map QGIS Bridge</h3>
+          <p>QGIS 캔버스와 NAVER 지도·로드뷰를 양방향으로 연결하고, 장소·주소 검색과 Directions 5 경로를 GIS 레이어 및 이력 파일로 활용하는 플러그인입니다.</p>
+          <span class="label">구현 범위</span>
+          <ul>
+            <li>QGIS 3 외부 브라우저 모드와 QGIS 4 내장 웹 뷰</li>
+            <li>지도 위치·줌 동기화, 로드뷰 방향과 API 제공 촬영일 표시</li>
+            <li>NAVER API HUB 지역 검색, Geocoding 주소 검색, 좌표 직접 입력</li>
+            <li>경로·안내 포인트, 최대 5개 경유지, 이력 저장/불러오기 및 GPKG·GeoJSON·SHP·GPX 내보내기</li>
+          </ul>
+          <div class="mini-panel"><span class="label">검증 범위 / 남은 작업</span><p>README에 2026-10-15 사용자 확인과 QGIS 3.44.14·4.2.2 오프라인 검증이 기록되어 있습니다. 정확한 3.34 런타임과 환경별 실제 API 전체 시나리오는 추가 확인이 필요합니다.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/navermap_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/navermap_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">Python / Supabase / PostGIS / GitHub Actions</span><span class="tag status">MVP 구현 · 운영 확장 중</span></div>
+          <h3>Safety Zone Change Monitoring System</h3>
+          <p>경찰청 보호구역 Open API의 원본·정제 스냅샷을 보존하고 신규·삭제·속성·공간 변경을 감지해 알림과 지도 대시보드로 검토하는 데이터 운영 프로젝트입니다.</p>
+          <span class="label">구현 범위</span>
+          <ul>
+            <li>Polygon·시설 Point·통합 보호구역 그룹과 변경 이력 관리</li>
+            <li>Supabase PostgreSQL/PostGIS와 GitHub-hosted runner, 09:00~10:40 KST 20분 간격 6개 청크 수집 일정</li>
+            <li>시도별 GeoJSON 분할·지연 로드, 전국 검색, 반복 변경 타임라인 및 KR/EN 전환</li>
+            <li>OSM/Kakao 지도·Roadview, 변경 시 Slack/Telegram 알림과 실행 이력</li>
+            <li>성공 실행 전체 데이터 갱신, 실패 실행 이력 갱신, fetch/rebase 후 push 재시도 및 모니터 종료 후 Pages 배포</li>
+          </ul>
+          <div class="mini-panel"><span class="label">검증 범위 / 남은 작업</span><p>표준노드링크·NGII 도로중심선 후보 비교는 로컬 PostGIS와 QGIS에서 검토 중입니다. 도로 링크 자동 확정 매칭과 실제 운영 실행의 성공 여부는 별도 검증 대상입니다.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">웹사이트 보기</a><a class="button" href="https://github.com/youngj-kim/safetyzone_automation/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">HTML / CSS / JavaScript / Kakao Maps</span><span class="tag status">정적 웹 지도 · 변경 검토 자동화</span></div>
+          <h3>병역명문가 혜택 지도</h3>
+          <p>병무청 공식 예우시설과 국방부 영외마트를 지도와 목록에서 검색하는 웹사이트입니다. 공공 데이터를 사용자 검색·길찾기 흐름과 변경 검토 절차로 연결했습니다.</p>
+          <span class="label">구현 범위</span>
+          <ul>
+            <li>지역·22개 업종·면제/할인/기타 필터, 마커 군집화와 지도 영역 검색</li>
+            <li>시설 혜택·연락처·원문, 카카오·네이버 길찾기 및 모바일 지도/목록</li>
+            <li>공식 영외마트 목록과 주소 기반 보강 좌표를 분리해 출처 보존</li>
+            <li>매월 1일 09:00 KST 공식 데이터 비교, 변경 보고서·후보 브랜치·초안 PR 및 Telegram 알림</li>
+            <li>빈 응답·중복 ID·25% 초과 급감 검증 후 검토 PR을 통한 데이터 반영</li>
+          </ul>
+          <div class="mini-panel"><span class="label">검증 범위 / 남은 작업</span><p>병무청 시설 스냅샷은 2026-10-16 수집 기준입니다. 국방부 목록 기준일은 2026-04-28이며, 보강 좌표는 공식 좌표와 구분합니다. 실제 혜택·운영 여부는 원문과 시설 확인이 필요합니다.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/military-family-benefit-map" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://benefits.yjkim.dev" target="_blank" rel="noopener">웹사이트 보기</a><a class="button" href="https://github.com/youngj-kim/military-family-benefit-map/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
+
+        <article class="card">
+          <div class="tag-row"><span class="tag">QGIS / GeoPackage / Route Comparison</span><span class="tag status">GPKG 비교 구현 · 확장 중</span></div>
+          <h3>Multi-Provider Navigation Route QA</h3>
+          <p>카카오 플러그인의 GPKG 경로 비교 기능으로 카카오·네이버 경로 이력을 A/B로 열어 지도와 비교표에서 검토합니다. 기존 계획에서 파일 기반 비교가 구현된 단계로 진행했습니다.</p>
+          <span class="label">구현 범위</span>
+          <ul>
+            <li>kakao_route_history 또는 naver_route_history가 있는 EPSG:4326 GPKG 지원</li>
+            <li>거리·소요 시간·조회 시점과 B−A 차이 표시</li>
+            <li>출발·도착점 20m 초과 차이 또는 경유지 차이 안내</li>
+            <li>A 파랑 실선·B 주황 점선 지도 표시와 비교 표시 제거</li>
+          </ul>
+          <div class="mini-panel"><span class="label">검증 범위 / 남은 작업</span><p>개발 후보 1.2.2는 통행료·예상 택시요금 비교를 추가합니다. 소요 시간과 요금은 조회 당시 예측값이며, 안내 누락·비정상 우회 자동 판정과 웹 비교 대시보드는 향후 확장 범위입니다.</p></div>
+          <div class="links"><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
+        </article>
       </div>
     </section>
 
