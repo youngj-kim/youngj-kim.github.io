@@ -9,3 +9,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
 .notes-home-actions{display:flex;align-items:center;gap:25px;white-space:nowrap}.notes-home-actions a:hover{text-decoration:underline}.notes-section .note-row{grid-template-columns:95px 1fr 24px}.notes-section .note-row h3 a:hover{text-decoration:underline;text-underline-offset:5px}.notes-section .notes-empty{padding:25px 0;color:var(--muted);font-size:13px}@media(max-width:760px){.notes-home-actions{gap:20px}.notes-section .note-row{grid-template-columns:1fr 20px}.notes-section .note-index{grid-column:1/-1}}
+
+.contact-section .eyebrow{margin-bottom:24px}
