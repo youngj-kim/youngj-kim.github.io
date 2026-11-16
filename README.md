@@ -37,5 +37,5 @@ Node.js 20 이상에서 `node scripts/serve.mjs`를 실행한 뒤 http://127.0.0
 - [병역명문가 예우지도](https://github.com/youngj-kim/military-family-benefit-map/blob/main/README.md): 새 도메인과 PWA·검색 기능
 
 소개 경력과 연락처는 기존 홈페이지에서 유지했습니다.
-프로젝트 그래픽은 실제 스크린샷이나 운영 데이터가 아닌 자체 제작한 개념도이며 화면에 이를 표시합니다.
+예우지도는 사용자가 제공한 실제 운영 화면을 사용합니다. 나머지 프로젝트 그래픽은 자체 제작한 개념도이며 화면에 이를 표시합니다.
 Field Notes는 발행 전 기획 주제입니다.
