@@ -1,0 +1,10 @@
+{
+  "name": "youngj-kim-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node --check assets/app.js && node --check scripts/build.mjs && node --check scripts/serve.mjs"
+  }
+}

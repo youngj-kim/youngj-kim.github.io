@@ -1,481 +1,87 @@
 <!DOCTYPE html>
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Young Jun Kim | Navigation Data & Mobility QA</title>
-  <meta name="description" content="Young Jun Kim - Automotive Navigation Data and Mobility QA Specialist" />
-  <link rel="alternate" hreflang="ko" href="https://yjkim.dev/" />
-  <link rel="alternate" hreflang="en" href="https://yjkim.dev/en.html" />
-
-  <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #111827;
-      --panel-2: #0b1220;
-      --text: #e5e7eb;
-      --muted: #a7b0c0;
-      --accent: #38bdf8;
-      --accent-2: #c4b5fd;
-      --good: #86efac;
-      --warn: #fde68a;
-      --line: #243044;
-      --soft-line: rgba(148, 163, 184, 0.22);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    nav,
-    header,
-    main,
-    footer {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-
-    nav {
-      padding: 20px 24px;
-      display: flex;
-      gap: 20px;
-      justify-content: flex-end;
-      border-bottom: 1px solid var(--line);
-    }
-
-    nav a {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: var(--text);
-    }
-
-    header {
-      padding: 72px 24px 48px;
-    }
-
-    main {
-      padding: 0 24px 80px;
-    }
-
-    section {
-      padding: 56px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      font-size: 44px;
-      line-height: 1.2;
-      margin-bottom: 16px;
-      letter-spacing: 0;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 24px;
-      letter-spacing: 0;
-    }
-
-    h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
-      letter-spacing: 0;
-    }
-
-    p {
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-
-    ul {
-      padding-left: 20px;
-      color: #d1d5db;
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      font-size: 24px;
-      color: var(--accent);
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .korean-subtitle {
-      font-size: 18px;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    .lead,
-    .section-intro {
-      max-width: 890px;
-      color: #d1d5db;
-    }
-
-    .lead {
-      font-size: 18px;
-    }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel-2);
-      color: var(--text);
-    }
-
-    .button:hover {
-      border-color: var(--accent);
-      text-decoration: none;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 24px;
-    }
-
-    .project-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 24px;
-    }
-
-    .card p {
-      color: #d1d5db;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .tag {
-      display: inline-block;
-      font-size: 13px;
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      background: rgba(56, 189, 248, 0.12);
-      padding: 4px 10px;
-      border-radius: 999px;
-    }
-
-    .status {
-      color: var(--accent-2);
-      border-color: rgba(196, 181, 253, 0.35);
-      background: rgba(196, 181, 253, 0.10);
-    }
-
-    .verified {
-      color: var(--good);
-      border-color: rgba(134, 239, 172, 0.35);
-      background: rgba(134, 239, 172, 0.10);
-    }
-
-    .planned {
-      color: var(--warn);
-      border-color: rgba(253, 230, 138, 0.35);
-      background: rgba(253, 230, 138, 0.10);
-    }
-
-    .label {
-      display: block;
-      color: var(--accent);
-      font-size: 14px;
-      font-weight: 700;
-      margin: 18px 0 6px;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .mini-panel {
-      border-top: 1px solid var(--soft-line);
-      padding-top: 16px;
-      margin-top: 16px;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .metric {
-      border: 1px solid var(--soft-line);
-      border-radius: 8px;
-      padding: 14px;
-      background: var(--panel-2);
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 22px;
-      line-height: 1.25;
-    }
-
-    .metric span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    footer {
-      padding: 32px 24px 56px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 760px) {
-      nav {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
-
-      header {
-        padding-top: 56px;
-      }
-
-      h1 {
-        font-size: 34px;
-      }
-
-      .subtitle {
-        font-size: 20px;
-      }
-
-      .split {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-    <a href="index.html">Korean</a>
-  </nav>
-
-  <header>
-    <h1>Young Jun Kim</h1>
-    <div class="subtitle">Automotive Navigation Data & Mobility QA Specialist</div>
-    <div class="korean-subtitle">Navigation map data operations, GIS workflow design, and mobility QA automation</div>
-
-    <p class="lead">
-      I have about 9 years of experience in automotive navigation map data operations,
-      road network maintenance, deployment validation, VOC issue analysis, OEM support,
-      HD Map / ADAS data support, and English communication with global automotive stakeholders.
-      Recently, I have been building practical QA workflows with QGIS, PostGIS, public Open APIs,
-      and map dashboards to turn repeated map data checks into traceable operational tools.
-    </p>
-
-    <div class="links">
-      <a class="button" href="https://github.com/youngj-kim" target="_blank" rel="noopener">GitHub</a>
-      <a class="button" href="https://www.linkedin.com/in/youngj-kim" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="button" href="mailto:contact@yjkim.dev">Email</a>
-    </div>
-  </header>
-
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        My background is in automotive navigation map data operations, where I have worked with
-        road networks, search and routing quality, and pre/post-deployment validation. I focus less
-        on building software for its own sake and more on defining the QA object, review criteria,
-        and repeatable validation steps that make map data operations easier to inspect and explain.
-      </p>
-      <p>
-        This portfolio connects navigation data QA automation with public-data map services. Kakao and NAVER QGIS plugins support desktop review and file-based route comparison; the safety-zone monitor and Military Family Benefit Map turn public data into searchable maps and change-review workflows. Domain knowledge, QA criteria, and verifiable deliverables guide the work.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Navigation Data Operations</h3>
-          <p>Road network maintenance, field/Roadview based review, and map data deployment validation.</p>
-        </div>
-        <div class="card">
-          <h3>Map Data QA</h3>
-          <p>Practical QA for search, route guidance, VOC issue analysis, and data change impact review.</p>
-        </div>
-        <div class="card">
-          <h3>GIS Workflow Design</h3>
-          <p>Workflow automation and spatial data analysis tools using QGIS, PostGIS, and Open APIs.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <p class="section-intro">Projects reviewed against public repository READMEs on 2026-10-17. Implemented features, documented validation, and remaining work are described separately.</p>
-      <div class="grid project-grid">
-        <article class="card">
-          <div class="tag-row"><span class="tag">QGIS / Python / Kakao APIs</span><span class="tag status">Functional Prototype / Active Development</span></div>
-          <h3>QGIS Kakao Roadview Bridge</h3>
-          <p>A QGIS plugin connecting Kakao Map and Roadview with location review, place search, driving routes, and guidance-point inspection in one map QA workflow.</p>
-          <span class="label">Implemented Scope</span>
-          <ul>
-            <li>Bidirectional map position/zoom synchronization and Roadview position/direction layers</li>
-            <li>Kakao Local search and Mobility routes with up to five waypoints, avoidance and vehicle options</li>
-            <li>Route/guidance history import and export to GeoPackage, GeoJSON, Shapefile, and GPX</li>
-            <li>Dock and external browser modes with adjustable map/Roadview layout</li>
-          </ul>
-          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>Targets QGIS 3.34+ and QGIS 4 / Qt 6. The exact 3.34 runtime remains unverified; fare comparison in development candidate 1.2.2 is a separate validation scope.</p></div>
-          <div class="links"><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
-        </article>
-
-        <article class="card">
-          <div class="tag-row"><span class="tag">QGIS / Python / NAVER APIs</span><span class="tag status">Experimental Development Version 0.2.0</span></div>
-          <h3>Naver Map QGIS Bridge</h3>
-          <p>A plugin synchronizing the QGIS canvas with NAVER Map and Roadview, turning place/address search and Directions 5 routes into GIS layers and reusable history files.</p>
-          <span class="label">Implemented Scope</span>
-          <ul>
-            <li>External browser mode for QGIS 3 and embedded web view for QGIS 4</li>
-            <li>Map position/zoom synchronization, Roadview direction and API-provided capture dates</li>
-            <li>NAVER API HUB local search, Geocoding address search, and direct coordinate input</li>
-            <li>Routes/guidance points, up to five waypoints, history import/export to GPKG, GeoJSON, SHP, and GPX</li>
-          </ul>
-          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>The README records user confirmation on 2026-10-15 and offline checks in QGIS 3.44.14/4.2.2. The exact 3.34 runtime and full live API scenarios across environments still need verification.</p></div>
-          <div class="links"><a class="button" href="https://github.com/youngj-kim/navermap_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/navermap_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
-        </article>
-
-        <article class="card">
-          <div class="tag-row"><span class="tag">Python / Supabase / PostGIS / GitHub Actions</span><span class="tag status">MVP Implemented / Expanding</span></div>
-          <h3>Safety Zone Change Monitoring System</h3>
-          <p>A data operations project preserving raw and normalized police safety-zone API snapshots, detecting additions, deletions, attribute and geometry changes, and supporting review through notifications and a map dashboard.</p>
-          <span class="label">Implemented Scope</span>
-          <ul>
-            <li>Polygon, facility Point, integrated zone groups, and change-event history</li>
-            <li>Supabase PostgreSQL/PostGIS and GitHub-hosted runner; six scheduled chunks at 20-minute intervals from 09:00 to 10:40 KST</li>
-            <li>Province-level GeoJSON and lazy loading, nationwide search, repeated-change timelines, and KR/EN views</li>
-            <li>OSM/Kakao maps, Roadview, change-triggered Slack/Telegram notifications, and run history</li>
-            <li>Full data refresh on success, run-history refresh on failure, fetch/rebase push retries, and Pages deployment after monitoring</li>
-          </ul>
-          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>Standard-link and NGII road-centerline candidate review remains in local PostGIS/QGIS. Confirmed automatic road matching and the success of individual production runs require separate verification.</p></div>
-          <div class="links"><a class="button" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener">Live Website</a><a class="button" href="https://github.com/youngj-kim/safetyzone_automation/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
-        </article>
-
-        <article class="card">
-          <div class="tag-row"><span class="tag">HTML / CSS / JavaScript / Kakao Maps</span><span class="tag status">Static Web Map / Automated Change Review</span></div>
-          <h3>Military Family Benefit Map</h3>
-          <p>A web map for searching official Military Manpower Administration benefit facilities and Ministry of National Defense off-base marts, connecting public data with facility search, directions, and change review.</p>
-          <span class="label">Implemented Scope</span>
-          <ul>
-            <li>Region, 22 business categories and benefit-type filters, marker clustering, and viewport search</li>
-            <li>Benefit details, contacts, original sources, Kakao/Naver directions, and mobile map/list views</li>
-            <li>Official mart records preserved separately from address-geocoded coordinates</li>
-            <li>Monthly official-source comparison at 09:00 KST on the first day, reports, candidate branches, draft PRs, and Telegram notifications</li>
-            <li>Empty-response, duplicate-ID and over-25% drop checks before reviewed data updates</li>
-          </ul>
-          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>The MMA snapshot was collected on 2026-10-16; the MND list is dated 2026-04-28. Geocoded positions are distinguished from official coordinates. Benefits and operating conditions should be checked with the original source and facility.</p></div>
-          <div class="links"><a class="button" href="https://github.com/youngj-kim/military-family-benefit-map" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://benefits.yjkim.dev" target="_blank" rel="noopener">Live Website</a><a class="button" href="https://github.com/youngj-kim/military-family-benefit-map/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
-        </article>
-
-        <article class="card">
-          <div class="tag-row"><span class="tag">QGIS / GeoPackage / Route Comparison</span><span class="tag status">GPKG Comparison Implemented / Expanding</span></div>
-          <h3>Multi-Provider Navigation Route QA</h3>
-          <p>The Kakao plugin now opens Kakao and Naver GPKG route histories for A/B review on a map and comparison table, advancing the previous plan into an implemented file-based comparison workflow.</p>
-          <span class="label">Implemented Scope</span>
-          <ul>
-            <li>Supports EPSG:4326 GPKGs containing kakao_route_history or naver_route_history</li>
-            <li>Distance, duration, query timestamps, and B−A differences</li>
-            <li>Warnings for endpoint differences over 20 m or different waypoints</li>
-            <li>Blue solid A / orange dashed B route overlays and overlay removal</li>
-          </ul>
-          <div class="mini-panel"><span class="label">Validation / Remaining Work</span><p>Development candidate 1.2.2 adds toll and estimated taxi fare comparison. Times/fares are query-time estimates; automatic missing-guidance/detour detection and a web comparison dashboard remain future work.</p></div>
-          <div class="links"><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener">View Repository</a><a class="button" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener">README</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="blog">
-      <h2>Blog</h2>
-      <p class="section-intro">
-        This space is intended for technical notes on designing and validating GIS, QGIS, and
-        PostGIS-based QA tools grounded in automotive navigation data operations.
-      </p>
-      <ul>
-        <li>Why I built a QGIS Roadview-based map QA workflow</li>
-        <li>Safety-zone Open API change monitoring MVP and operational validation criteria</li>
-        <li>Nationwide baseline loading and interpretation of new/changed/deleted events</li>
-        <li>Safety-zone change review dashboard using OSM/Kakao maps and Roadview</li>
-        <li>Standard-link matching review criteria and QGIS visual QA cases</li>
-        <li>Why Kakao / Naver route comparison matters in navigation QA</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        If you would like to discuss map data QA, road network validation, mobility data operations,
-        or GIS-based workflow tooling, please contact me below.
-      </p>
-      <p>Portfolio: <a href="https://yjkim.dev">yjkim.dev</a></p>
-      <p>Email: <a href="mailto:contact@yjkim.dev">contact@yjkim.dev</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/youngj-kim" target="_blank" rel="noopener">www.linkedin.com/in/youngj-kim</a></p>
-      <p>GitHub: <a href="https://github.com/youngj-kim" target="_blank" rel="noopener">github.com/youngj-kim</a></p>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 Young Jun Kim. Built with GitHub Pages.
-  </footer>
-</body>
-</html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Young Jun Kim — Navigation Data & Mobility QA</title>
+<meta name="description" content="Young Jun Kim’s portfolio. Navigation data, mobility QA, and practical GIS tools built with QGIS, PostGIS, and public data." />
+<meta name="theme-color" content="#f7f8f2"><meta property="og:title" content="Young Jun Kim — Navigation Data & Mobility QA"><meta property="og:description" content="Better map data. Better journeys."><meta property="og:type" content="website"><meta property="og:url" content="https://yjkim.dev/en.html">
+<link rel="canonical" href="https://yjkim.dev/en.html"><link rel="alternate" hreflang="ko" href="https://yjkim.dev/"><link rel="alternate" hreflang="en" href="https://yjkim.dev/en.html"><link rel="alternate" hreflang="x-default" href="https://yjkim.dev/">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><nav class="nav container" aria-label="Main navigation"><a class="wordmark" href="en.html" aria-label="Young Jun Kim home">yk<span class="brand-dot">.</span><span class="wordmark-name">Young Jun Kim</span></a><div class="nav-links"><a href="#projects">Projects</a><a href="#about">About</a><a href="#blog">Notes</a><a href="#contact">Contact</a></div><div class="nav-tools"><a class="language" href="index.html" lang="ko">KO <span aria-hidden="true">↗</span></a><button class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme" aria-pressed="false">◐</button></div></nav></header>
+<main id="main">
+<section class="hero container" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span> NAVIGATION DATA & MOBILITY QA</p><h1 id="hero-title">Better map data.<br>Better <span class="accent-word">journeys<svg viewBox="0 0 300 20" aria-hidden="true"><path d="M4 14Q150-3 294 10"/></svg></span>.</h1><p class="hero-intro">I’m <strong>Young Jun Kim</strong>.<br>I turn navigation data experience into<br>practical tools for better map quality.</p><div class="hero-actions"><a class="button primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a><a class="text-link" href="https://github.com/youngj-kim" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div><div class="hero-footnote"><span>QGIS</span><span>PostGIS</span><span>Python</span><span>Public Data</span></div></div><div class="hero-graphic"><div class="graphic-label"><span class="crosshair">＋</span> A PRACTICAL VIEW OF SPATIAL DATA</div><svg class="map-art map-hero" viewBox="0 0 640 540" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs><pattern id="grid-hero" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="currentColor" stroke-opacity=".08"/></pattern></defs>
+  <rect width="640" height="540" fill="url(#grid-hero)"/>
+  <g class="blocks" stroke="currentColor" stroke-opacity=".14" fill="currentColor" fill-opacity=".025"><path d="M45 80L174 49 207 123 83 160Z M222 38L340 58 307 143 247 122Z M379 64L509 30 531 118 407 147Z M97 196L212 157 241 240 128 278Z M269 181L329 177 366 256 280 282Z M422 184L548 145 575 227 449 270Z M27 343L117 307 151 410 63 445Z M178 330L238 308 282 421 209 445Z M321 319L401 295 440 393 356 425Z M478 310L590 273 621 367 511 414Z M90 484L178 452 201 520H105Z M390 464L474 440 501 526H412Z"/></g>
+  <path d="M-30 310C66 333 113 291 171 300S269 395 366 375 452 299 514 320 603 384 679 345" stroke="currentColor" stroke-opacity=".055" stroke-width="42"/>
+  <g stroke="currentColor" stroke-opacity=".22"><path d="M-30 198L666 5 M-8 302L650 100 M28 470L677 243 M169 550L650 395 M28 7L226 553 M215-10L422 559 M371-12L580 547 M558-20L660 238"/><path d="M4 202L637 29 M17 294L633 113 M41 460L635 255 M173 538L626 399" stroke-dasharray="3 6"/></g>
+  <path class="route-shadow" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="route" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M117 401L315 333L292 262L452 211L471 247L551 221" stroke="#c3a06c" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+  <g class="zone" stroke="#84a65b" fill="#bce582" fill-opacity=".15" stroke-dasharray="4 4"><path d="M232 163L298 146 327 221 262 243Z"/><path d="M386 117L449 96 477 162 408 185Z"/></g>
+  <g class="map-point"><circle cx="117" cy="401" r="11"/><circle cx="117" cy="401" r="4" class="point-core"/><circle cx="551" cy="221" r="11"/><circle cx="551" cy="221" r="4" class="point-core"/></g>
+  <g font-family="monospace" font-size="10" fill="currentColor" opacity=".45"><text x="53" y="42">37°33′ N</text><text x="521" y="501">126°58′ E</text><text x="351" y="475">NAVIGATION / DATA / QA</text></g></svg><div class="floating-note"><span class="note-icon">⌁</span><div><strong>From data to direction.</strong><small>Understand. Validate. Connect.</small></div><span class="note-check">✓</span></div><div class="graphic-scale"><span>0 ━━━━━ 500 m</span><span>CONCEPTUAL MAP / NOT LIVE DATA</span></div></div></section>
+<div class="expertise-strip"><div class="container"><span><strong>~9 yrs</strong> in navigation data operations</span><span>Navigation & Mobility</span><span>Geospatial Quality</span><span>Workflow Automation</span></div></div>
+<section id="projects" class="section container"><div class="section-heading"><div><p class="eyebrow">01 / SELECTED WORK</p><h2>Experience into tools. Ideas into maps.</h2></div><a class="text-link" href="https://github.com/youngj-kim" target="_blank" rel="noopener noreferrer">More on GitHub <span aria-hidden="true">↗</span></a></div><div class="project-toolbar"><p>GIS and map-data projects that start with real operational problems</p><div class="filters" role="group" aria-label="Filter projects"><button data-filter="all" aria-pressed="true">All <span>05</span></button><button data-filter="qgis" aria-pressed="false">QGIS</button><button data-filter="data" aria-pressed="false">Data</button><button data-filter="web" aria-pressed="false">Web</button></div></div><p id="filter-status" class="sr-only" aria-live="polite"></p>
+<div class="project-grid"><article id="project-safety" class="project featured" data-category="data"><div class="project-visual safety-visual"><div class="visual-top"><span><i></i> SAFETY ZONE / CHANGE MONITOR</span><span>01 — 05</span></div><svg class="map-art map-safety" viewBox="0 0 640 540" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs><pattern id="grid-safety" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="currentColor" stroke-opacity=".08"/></pattern></defs>
+  <rect width="640" height="540" fill="url(#grid-safety)"/>
+  <g class="blocks" stroke="currentColor" stroke-opacity=".14" fill="currentColor" fill-opacity=".025"><path d="M45 80L174 49 207 123 83 160Z M222 38L340 58 307 143 247 122Z M379 64L509 30 531 118 407 147Z M97 196L212 157 241 240 128 278Z M269 181L329 177 366 256 280 282Z M422 184L548 145 575 227 449 270Z M27 343L117 307 151 410 63 445Z M178 330L238 308 282 421 209 445Z M321 319L401 295 440 393 356 425Z M478 310L590 273 621 367 511 414Z M90 484L178 452 201 520H105Z M390 464L474 440 501 526H412Z"/></g>
+  <path d="M-30 310C66 333 113 291 171 300S269 395 366 375 452 299 514 320 603 384 679 345" stroke="currentColor" stroke-opacity=".055" stroke-width="42"/>
+  <g stroke="currentColor" stroke-opacity=".22"><path d="M-30 198L666 5 M-8 302L650 100 M28 470L677 243 M169 550L650 395 M28 7L226 553 M215-10L422 559 M371-12L580 547 M558-20L660 238"/><path d="M4 202L637 29 M17 294L633 113 M41 460L635 255 M173 538L626 399" stroke-dasharray="3 6"/></g>
+  <path class="route-shadow" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="route" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M117 401L315 333L292 262L452 211L471 247L551 221" stroke="#c3a06c" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+  <g class="zone" stroke="#84a65b" fill="#bce582" fill-opacity=".15" stroke-dasharray="4 4"><path d="M232 163L298 146 327 221 262 243Z"/><path d="M386 117L449 96 477 162 408 185Z"/></g>
+  <g class="map-point"><circle cx="117" cy="401" r="11"/><circle cx="117" cy="401" r="4" class="point-core"/><circle cx="551" cy="221" r="11"/><circle cx="551" cy="221" r="4" class="point-core"/></g>
+  <g font-family="monospace" font-size="10" fill="currentColor" opacity=".45"><text x="53" y="42">37°33′ N</text><text x="521" y="501">126°58′ E</text><text x="351" y="475">NAVIGATION / DATA / QA</text></g></svg><div class="map-caption"><span class="map-caption-icon">◎</span><div><b>Detect changes. Keep the evidence.</b><small>COLLECT → COMPARE → REVIEW</small></div></div><span class="illustration-label">Workflow illustration</span></div><div class="project-body"><div class="project-type"><span>DATA PIPELINE / WEB GIS</span><span>01</span></div><h3>Safety Zone Monitoring</h3><p>Making small changes in public data visible. A connected workflow for collecting safety-zone data, detecting changes, sending alerts, and reviewing them on a map.</p><div class="tech-tags"><span>Python</span><span>PostGIS</span><span>Supabase</span><span>GitHub Actions</span></div><details><summary>Scope & validation <span aria-hidden="true">＋</span></summary><div class="detail-content"><span class="project-status">MVP · expanding operations</span><ul><li>Raw and normalized snapshots with new, deleted, attribute and geometry change detection</li><li>Map dashboard with on-demand regional data loading</li><li>Collection across six scheduled chunks and Slack / Telegram change alerts</li></ul><p>Road-link candidate comparison remains under review. Automatic confirmed matching and production-run success require separate validation.</p><a class="text-link" href="https://github.com/youngj-kim/safetyzone_automation/blob/main/README.md" target="_blank" rel="noopener noreferrer">Source README <span aria-hidden="true">↗</span></a></div></details><div class="project-links"><a class="" href="https://github.com/youngj-kim/safetyzone_automation" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a><a class="" href="https://safetyzone.yjkim.dev" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">↗</span></a></div></div></article><article id="project-kakao" class="project " data-category="qgis"><div class="project-visual bridge-visual kakao"><div class="window-bar"><span>● ● ●</span><span>KAKAO × QGIS</span><span>↗</span></div><div class="bridge-canvas"><div class="layer-list"><span>LAYERS</span><b>▣ Route</b><b>▣ Roadview</b><b>▣ Basemap</b><div class="layer-lines"></div></div><div class="mini-map"><svg class="map-art map-kakao" viewBox="0 0 640 540" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs><pattern id="grid-kakao" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="currentColor" stroke-opacity=".08"/></pattern></defs>
+  <rect width="640" height="540" fill="url(#grid-kakao)"/>
+  <g class="blocks" stroke="currentColor" stroke-opacity=".14" fill="currentColor" fill-opacity=".025"><path d="M45 80L174 49 207 123 83 160Z M222 38L340 58 307 143 247 122Z M379 64L509 30 531 118 407 147Z M97 196L212 157 241 240 128 278Z M269 181L329 177 366 256 280 282Z M422 184L548 145 575 227 449 270Z M27 343L117 307 151 410 63 445Z M178 330L238 308 282 421 209 445Z M321 319L401 295 440 393 356 425Z M478 310L590 273 621 367 511 414Z M90 484L178 452 201 520H105Z M390 464L474 440 501 526H412Z"/></g>
+  <path d="M-30 310C66 333 113 291 171 300S269 395 366 375 452 299 514 320 603 384 679 345" stroke="currentColor" stroke-opacity=".055" stroke-width="42"/>
+  <g stroke="currentColor" stroke-opacity=".22"><path d="M-30 198L666 5 M-8 302L650 100 M28 470L677 243 M169 550L650 395 M28 7L226 553 M215-10L422 559 M371-12L580 547 M558-20L660 238"/><path d="M4 202L637 29 M17 294L633 113 M41 460L635 255 M173 538L626 399" stroke-dasharray="3 6"/></g>
+  <path class="route-shadow" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="route" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M117 401L315 333L292 262L452 211L471 247L551 221" stroke="#c3a06c" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+  <g class="zone" stroke="#84a65b" fill="#bce582" fill-opacity=".15" stroke-dasharray="4 4"><path d="M232 163L298 146 327 221 262 243Z"/><path d="M386 117L449 96 477 162 408 185Z"/></g>
+  <g class="map-point"><circle cx="117" cy="401" r="11"/><circle cx="117" cy="401" r="4" class="point-core"/><circle cx="551" cy="221" r="11"/><circle cx="551" cy="221" r="4" class="point-core"/></g>
+  <g font-family="monospace" font-size="10" fill="currentColor" opacity=".45"><text x="53" y="42">37°33′ N</text><text x="521" y="501">126°58′ E</text><text x="351" y="475">NAVIGATION / DATA / QA</text></g></svg></div></div><div class="sync-label">QGIS <span>⇄</span> Kakao Map</div><span class="illustration-label">Integration illustration</span></div><div class="project-body"><div class="project-type"><span>QGIS PLUGIN / DESKTOP GIS</span><span>02</span></div><h3>Kakao QGIS Bridge</h3><p>Bring QGIS, Kakao Map, and Roadview into one workspace. Reduce repetitive map-review steps, from location checks to route and fare comparisons.</p><div class="tech-tags"><span>Python</span><span>QGIS</span><span>Kakao APIs</span></div><details><summary>Scope & validation <span aria-hidden="true">＋</span></summary><div class="detail-content"><span class="project-status">v1.3 · per README</span><ul><li>Synchronized map movement and zoom with Roadview position and direction</li><li>Place search, driving routes, up to five waypoints, and GIS exports</li><li>Distance, duration, toll and estimated taxi-fare comparison for Kakao / NAVER GPKG routes</li></ul><p>Checks are documented for Windows QGIS 3.44 / 4.2 environments. The declared minimum QGIS 3.34 has not been runtime-tested. API keys are stored unencrypted in user settings.</p><a class="text-link" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener noreferrer">Source README <span aria-hidden="true">↗</span></a></div></details><div class="project-links"><a class="" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a><a class="" href="https://github.com/youngj-kim/kakao_qgis-bridge/tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation <span aria-hidden="true">↗</span></a></div></div></article><article id="project-naver" class="project " data-category="qgis"><div class="project-visual bridge-visual naver"><div class="window-bar"><span>● ● ●</span><span>NAVER × QGIS</span><span>↗</span></div><div class="bridge-canvas"><div class="layer-list"><span>LAYERS</span><b>▣ Route</b><b>▣ Roadview</b><b>▣ Basemap</b><div class="layer-lines"></div></div><div class="mini-map"><svg class="map-art map-naver" viewBox="0 0 640 540" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs><pattern id="grid-naver" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="currentColor" stroke-opacity=".08"/></pattern></defs>
+  <rect width="640" height="540" fill="url(#grid-naver)"/>
+  <g class="blocks" stroke="currentColor" stroke-opacity=".14" fill="currentColor" fill-opacity=".025"><path d="M45 80L174 49 207 123 83 160Z M222 38L340 58 307 143 247 122Z M379 64L509 30 531 118 407 147Z M97 196L212 157 241 240 128 278Z M269 181L329 177 366 256 280 282Z M422 184L548 145 575 227 449 270Z M27 343L117 307 151 410 63 445Z M178 330L238 308 282 421 209 445Z M321 319L401 295 440 393 356 425Z M478 310L590 273 621 367 511 414Z M90 484L178 452 201 520H105Z M390 464L474 440 501 526H412Z"/></g>
+  <path d="M-30 310C66 333 113 291 171 300S269 395 366 375 452 299 514 320 603 384 679 345" stroke="currentColor" stroke-opacity=".055" stroke-width="42"/>
+  <g stroke="currentColor" stroke-opacity=".22"><path d="M-30 198L666 5 M-8 302L650 100 M28 470L677 243 M169 550L650 395 M28 7L226 553 M215-10L422 559 M371-12L580 547 M558-20L660 238"/><path d="M4 202L637 29 M17 294L633 113 M41 460L635 255 M173 538L626 399" stroke-dasharray="3 6"/></g>
+  <path class="route-shadow" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="route" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M117 401L315 333L292 262L452 211L471 247L551 221" stroke="#c3a06c" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+  <g class="zone" stroke="#84a65b" fill="#bce582" fill-opacity=".15" stroke-dasharray="4 4"><path d="M232 163L298 146 327 221 262 243Z"/><path d="M386 117L449 96 477 162 408 185Z"/></g>
+  <g class="map-point"><circle cx="117" cy="401" r="11"/><circle cx="117" cy="401" r="4" class="point-core"/><circle cx="551" cy="221" r="11"/><circle cx="551" cy="221" r="4" class="point-core"/></g>
+  <g font-family="monospace" font-size="10" fill="currentColor" opacity=".45"><text x="53" y="42">37°33′ N</text><text x="521" y="501">126°58′ E</text><text x="351" y="475">NAVIGATION / DATA / QA</text></g></svg></div></div><div class="sync-label">QGIS <span>⇄</span> NAVER Map</div><span class="illustration-label">Integration illustration</span></div><div class="project-body"><div class="project-type"><span>QGIS PLUGIN / DESKTOP GIS</span><span>03</span></div><h3>Naver Map QGIS Bridge</h3><p>Connect familiar NAVER maps with GIS analysis. Search places and addresses, inspect street views, and manage routes and history alongside QGIS.</p><div class="tech-tags"><span>Python</span><span>QGIS</span><span>NAVER APIs</span></div><details><summary>Scope & validation <span aria-hidden="true">＋</span></summary><div class="detail-content"><span class="project-status">v1.0 · per README</span><ul><li>QGIS map-position and zoom synchronization with street-view direction</li><li>Directions 5 routes, batch history management, and GPKG / GeoJSON / SHP / GPX exports</li><li>Embedded viewer / external-browser modes and EN / KR controls</li></ul><p>README labels version 1.0 as a stable release while distinguishing registry approval and release publication as separate steps. Windows QGIS 3.44.14 / 4.2.2 checks do not establish compatibility with every environment.</p><a class="text-link" href="https://github.com/youngj-kim/navermap_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener noreferrer">Source README <span aria-hidden="true">↗</span></a></div></details><div class="project-links"><a class="" href="https://github.com/youngj-kim/navermap_qgis-bridge" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a><a class="" href="https://github.com/youngj-kim/navermap_qgis-bridge/tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation <span aria-hidden="true">↗</span></a></div></div></article><article id="project-benefits" class="project " data-category="web"><div class="project-visual benefits-visual"><div class="benefit-heading"><span>예우지도</span><span>↗</span></div><div class="benefit-search">⌕ &nbsp; Find benefit facilities nearby</div><div class="benefit-tags"><span>Region ⌄</span><span>Category ⌄</span><span>Benefit ⌄</span></div><div class="benefit-map"><svg class="map-art map-benefits" viewBox="0 0 640 540" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs><pattern id="grid-benefits" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="currentColor" stroke-opacity=".08"/></pattern></defs>
+  <rect width="640" height="540" fill="url(#grid-benefits)"/>
+  <g class="blocks" stroke="currentColor" stroke-opacity=".14" fill="currentColor" fill-opacity=".025"><path d="M45 80L174 49 207 123 83 160Z M222 38L340 58 307 143 247 122Z M379 64L509 30 531 118 407 147Z M97 196L212 157 241 240 128 278Z M269 181L329 177 366 256 280 282Z M422 184L548 145 575 227 449 270Z M27 343L117 307 151 410 63 445Z M178 330L238 308 282 421 209 445Z M321 319L401 295 440 393 356 425Z M478 310L590 273 621 367 511 414Z M90 484L178 452 201 520H105Z M390 464L474 440 501 526H412Z"/></g>
+  <path d="M-30 310C66 333 113 291 171 300S269 395 366 375 452 299 514 320 603 384 679 345" stroke="currentColor" stroke-opacity=".055" stroke-width="42"/>
+  <g stroke="currentColor" stroke-opacity=".22"><path d="M-30 198L666 5 M-8 302L650 100 M28 470L677 243 M169 550L650 395 M28 7L226 553 M215-10L422 559 M371-12L580 547 M558-20L660 238"/><path d="M4 202L637 29 M17 294L633 113 M41 460L635 255 M173 538L626 399" stroke-dasharray="3 6"/></g>
+  <path class="route-shadow" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="route" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M117 401L315 333L292 262L452 211L471 247L551 221" stroke="#c3a06c" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+  <g class="zone" stroke="#84a65b" fill="#bce582" fill-opacity=".15" stroke-dasharray="4 4"><path d="M232 163L298 146 327 221 262 243Z"/><path d="M386 117L449 96 477 162 408 185Z"/></g>
+  <g class="map-point"><circle cx="117" cy="401" r="11"/><circle cx="117" cy="401" r="4" class="point-core"/><circle cx="551" cy="221" r="11"/><circle cx="551" cy="221" r="4" class="point-core"/></g>
+  <g font-family="monospace" font-size="10" fill="currentColor" opacity=".45"><text x="53" y="42">37°33′ N</text><text x="521" y="501">126°58′ E</text><text x="351" y="475">NAVIGATION / DATA / QA</text></g></svg></div><span class="illustration-label">Service illustration</span></div><div class="project-body"><div class="project-type"><span>PUBLIC DATA / WEB MAP</span><span>04</span></div><h3>Military Family Benefit Map</h3><p>Find relevant benefits on a nearby map. Search official military-family benefit facilities and off-base stores, filter results, and get directions.</p><div class="tech-tags"><span>JavaScript</span><span>Kakao Maps</span><span>Public Data</span><span>PWA</span></div><details><summary>Scope & validation <span aria-hidden="true">＋</span></summary><div class="detail-content"><span class="project-status">Public-data map service</span><ul><li>Nationwide search with region, 22-category, and benefit filters</li><li>Favorites, facility sharing, Kakao / NAVER directions, and home-screen installation</li><li>Monthly official-data checks, change reports, and draft review PRs</li></ul><p>The README cites a November 1, 2026 MMA data snapshot. Confirm benefits and opening status with the original source and facility. Home-screen installation still requires internet access.</p><a class="text-link" href="https://github.com/youngj-kim/military-family-benefit-map/blob/main/README.md" target="_blank" rel="noopener noreferrer">Source README <span aria-hidden="true">↗</span></a></div></details><div class="project-links"><a class="" href="https://github.com/youngj-kim/military-family-benefit-map" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a><a class="" href="https://yeumap.yjkim.dev" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">↗</span></a></div></div></article><article id="project-routes" class="project " data-category="qgis"><div class="project-visual routes-visual"><svg class="map-art map-routes" viewBox="0 0 640 540" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs><pattern id="grid-routes" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="currentColor" stroke-opacity=".08"/></pattern></defs>
+  <rect width="640" height="540" fill="url(#grid-routes)"/>
+  <g class="blocks" stroke="currentColor" stroke-opacity=".14" fill="currentColor" fill-opacity=".025"><path d="M45 80L174 49 207 123 83 160Z M222 38L340 58 307 143 247 122Z M379 64L509 30 531 118 407 147Z M97 196L212 157 241 240 128 278Z M269 181L329 177 366 256 280 282Z M422 184L548 145 575 227 449 270Z M27 343L117 307 151 410 63 445Z M178 330L238 308 282 421 209 445Z M321 319L401 295 440 393 356 425Z M478 310L590 273 621 367 511 414Z M90 484L178 452 201 520H105Z M390 464L474 440 501 526H412Z"/></g>
+  <path d="M-30 310C66 333 113 291 171 300S269 395 366 375 452 299 514 320 603 384 679 345" stroke="currentColor" stroke-opacity=".055" stroke-width="42"/>
+  <g stroke="currentColor" stroke-opacity=".22"><path d="M-30 198L666 5 M-8 302L650 100 M28 470L677 243 M169 550L650 395 M28 7L226 553 M215-10L422 559 M371-12L580 547 M558-20L660 238"/><path d="M4 202L637 29 M17 294L633 113 M41 460L635 255 M173 538L626 399" stroke-dasharray="3 6"/></g>
+  <path class="route-shadow" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="route" d="M117 401L192 376L166 303L292 262L266 189L428 140L471 247L551 221" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M117 401L315 333L292 262L452 211L471 247L551 221" stroke="#c3a06c" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+  <g class="zone" stroke="#84a65b" fill="#bce582" fill-opacity=".15" stroke-dasharray="4 4"><path d="M232 163L298 146 327 221 262 243Z"/><path d="M386 117L449 96 477 162 408 185Z"/></g>
+  <g class="map-point"><circle cx="117" cy="401" r="11"/><circle cx="117" cy="401" r="4" class="point-core"/><circle cx="551" cy="221" r="11"/><circle cx="551" cy="221" r="4" class="point-core"/></g>
+  <g font-family="monospace" font-size="10" fill="currentColor" opacity=".45"><text x="53" y="42">37°33′ N</text><text x="521" y="501">126°58′ E</text><text x="351" y="475">NAVIGATION / DATA / QA</text></g></svg><div class="route-key"><span><i></i> ROUTE A</span><span><i></i> ROUTE B</span></div><span class="illustration-label">Route comparison illustration</span></div><div class="project-body"><div class="project-type"><span>ROUTE COMPARISON / QA WORKFLOW</span><span>05</span></div><h3>Different routes. A shared QA lens.</h3><p>Overlay Kakao and NAVER route histories and compare distance, duration, and fares. Turn provider results into reviewable GIS data.</p><div class="tech-tags"><span>GeoPackage</span><span>QGIS</span><span>Route QA</span></div><details><summary>Scope & validation <span aria-hidden="true">＋</span></summary><div class="detail-content"><span class="project-status">Implemented in Kakao Bridge</span><ul><li>Compare EPSG:4326 GPKG route histories and display differences</li><li>Warnings for differing endpoints and waypoints</li><li>Blue solid and orange dashed routes on the map</li></ul><p>A comparison feature within Kakao Bridge, rather than a separate product. Duration and fares are estimates at query time; automatic missing-guidance and abnormal-detour classification remain future work.</p><a class="text-link" href="https://github.com/youngj-kim/kakao_qgis-bridge/blob/main/README.md" target="_blank" rel="noopener noreferrer">Source README <span aria-hidden="true">↗</span></a></div></details><div class="project-links"><a class="" href="https://github.com/youngj-kim/kakao_qgis-bridge" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a><a class="" href="https://github.com/youngj-kim/kakao_qgis-bridge/tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation <span aria-hidden="true">↗</span></a></div></div></article></div><p class="source-note">Public repository READMEs reviewed November 16, 2026. Documented features and validation limits are distinguished. Graphics are conceptual illustrations.</p></section>
+<section id="about" class="about-section"><div class="container about-grid"><div><p class="eyebrow">02 / ABOUT ME</p><h2>Better maps begin with<br>a closer look at data.</h2><p class="about-name">Young Jun Kim <span>/ 김영준</span></p><p class="about-role">Automotive Navigation Data<br>& Mobility QA Specialist</p><a class="text-link" href="https://www.linkedin.com/in/youngj-kim" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div><div class="about-copy"><p class="about-lead">Turning repetitive checks into<br>repeatable workflows.</p><p>For approximately nine years, I worked in automotive navigation map-data operations, road-network maintenance, release validation, VOC analysis, OEM support, and HD Map / ADAS data support.</p><p>What data should we inspect? What defines a pass? How do we retain evidence for the next review? I use domain experience to define QA criteria and build usable tools with QGIS, PostGIS, and Open APIs.</p><div class="capability-list"><div><span>01</span><h3>Navigation Data Operations</h3><p>Road networks · map release validation · field / street-view checks</p></div><div><span>02</span><h3>Map Quality & Mobility QA</h3><p>Route guidance · VOC analysis · change-impact review</p></div><div><span>03</span><h3>GIS Workflow Design</h3><p>Spatial analysis · public APIs · workflow tooling</p></div></div></div></div></section>
+<section id="blog" class="section container notes-section"><div class="section-heading"><div><p class="eyebrow">03 / FIELD NOTES</p><h2>Building, learning, documenting.</h2></div><span class="notes-label">Writing in progress <span aria-hidden="true">↗</span></span></div><p class="section-description">Planned notes on problem framing, data flows, and validation criteria.</p><div class="notes-list"><article class="note-row"><span class="note-index">01</span><div><span class="eyebrow">QGIS / WORKFLOW</span><h3>Why connect QGIS with street view?</h3><p>Bringing repeated map checks into one review flow</p></div><span class="coming-soon">Planned</span></article><article class="note-row"><span class="note-index">02</span><div><span class="eyebrow">POSTGIS / DATA QA</span><h3>How should we validate changes in public data?</h3><p>Reading safety-zone snapshots and change events</p></div><span class="coming-soon">Planned</span></article><article class="note-row"><span class="note-index">03</span><div><span class="eyebrow">NAVIGATION / ROUTE QA</span><h3>What does comparing navigation routes reveal?</h3><p>Reviewing distance, duration, and guidance through a QA lens</p></div><span class="coming-soon">Planned</span></article></div></section>
+<section id="contact" class="contact-section"><div class="container contact-inner"><div><p class="eyebrow">04 / LET’S CONNECT</p><h2>Let’s talk about<br>better map data.</h2><p>Map-data QA, mobility operations,<br>or practical GIS tools — let’s connect.</p></div><div class="contact-links"><a class="email-link" href="mailto:contact@yjkim.dev">contact@yjkim.dev <span aria-hidden="true">↗</span></a><button class="copy-email" data-copy="contact@yjkim.dev" data-label="Copy email address" data-success="Copied ✓" data-error="Could not copy. Please select the address." aria-live="polite">Copy email address <span aria-hidden="true">⧉</span></button><div class="social-links"><a class="" href="https://github.com/youngj-kim" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a class="" href="https://www.linkedin.com/in/youngj-kim" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div></div></div></section>
+</main><footer class="container footer"><a class="wordmark" href="#main">yk<span class="brand-dot">.</span></a><p>© 2026 Young Jun Kim</p><span>Built with care. Hosted on GitHub Pages.</span><a href="#main" class="back-top">Back to top ↑</a></footer>
+</body></html>
