@@ -1,0 +1,17 @@
+---
+layout: notes
+---
+<article class="note-article">
+  <a class="text-link" href="/notes/">← 전체 글</a>
+  <header class="post-header">
+    <p class="eyebrow">FIELD NOTES / {{ page.category | default: 'NOTES' | escape }}</p>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.summary %}<p class="post-summary">{{ page.summary | escape }}</p>{% endif %}
+    <div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time><span>{{ page.category | default: 'NOTES' | escape }}</span><a href="https://github.com/youngj-kim/youngj-kim.github.io/edit/main/{{ page.path | escape }}" target="_blank" rel="noopener noreferrer">GitHub에서 수정 ↗</a></div>
+  </header>
+  <div class="prose">{{ content }}</div>
+  <nav class="post-pagination" aria-label="다른 글">
+    {% if page.previous %}<a href="{{ page.previous.url }}"><small>이전 글</small>{{ page.previous.title | escape }} ←</a>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url }}"><small>다음 글</small>{{ page.next.title | escape }} →</a>{% endif %}
+  </nav>
+</article>

@@ -1,0 +1,8 @@
+---
+layout: null
+---
+[
+{% for post in site.posts %}
+  {"title": {{ post.title | jsonify }}, "url": {{ post.url | jsonify }}, "summary": {{ post.summary | default: post.excerpt | strip_html | truncate: 150 | jsonify }}, "category": {{ post.category | default: 'NOTES' | jsonify }}, "date": {{ post.date | date: '%Y.%m.%d' | jsonify }}, "lang": {{ post.lang | default: 'ko' | jsonify }}}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]

@@ -1,0 +1,23 @@
+title: Young Jun Kim
+url: https://yjkim.dev
+baseurl: ""
+timezone: Asia/Seoul
+markdown: kramdown
+permalink: /notes/:year/:month/:day/:title/
+future: false
+exclude:
+  - scripts
+  - content
+  - README.md
+  - package.json
+  - package-lock.json
+  - tests
+  - Gemfile
+  - Gemfile.lock
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      lang: ko
