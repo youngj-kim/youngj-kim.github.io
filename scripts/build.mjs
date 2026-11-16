@@ -1,4 +1,9 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+
+const assetVersion = async path => createHash('sha256').update(await readFile(path)).digest('hex').slice(0, 12);
+const cssVersion = await assetVersion('assets/style.css');
+const jsVersion = await assetVersion('assets/app.js');
 
 // Both language pages are generated from this one source. No build is needed on GitHub Pages.
 const external = (url, label, cls = '') => `<a class="${cls}" href="${url}" target="_blank" rel="noopener noreferrer">${label} <span aria-hidden="true">↗</span></a>`;
@@ -43,7 +48,7 @@ for (const en of [false, true]) {
 <meta name="description" content="${t('김영준의 개인 포트폴리오. 자동차 내비게이션 해외사업과 OEM 운영, 공간 데이터 경험을 소개하고 GIS·지도 데이터 QA 프로젝트를 공유합니다.', 'Young Jun Kim’s personal portfolio. Global business, automotive navigation, OEM operations, and geospatial data, with practical GIS and map-quality projects.')}" />
 <meta name="theme-color" content="#f7f8f2"><meta property="og:title" content="Young Jun Kim — Global Business & Automotive Navigation"><meta property="og:description" content="${t('지도의 정확함을, 더 나은 이동으로.', 'Better map data. Better journeys.')}"><meta property="og:type" content="website"><meta property="og:url" content="https://yjkim.dev/${en ? 'en.html' : ''}">
 <link rel="canonical" href="https://yjkim.dev/${en ? 'en.html' : ''}"><link rel="alternate" hreflang="ko" href="https://yjkim.dev/"><link rel="alternate" hreflang="en" href="https://yjkim.dev/en.html"><link rel="alternate" hreflang="x-default" href="https://yjkim.dev/">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="stylesheet" href="assets/style.css?v=${cssVersion}"><script src="assets/app.js?v=${jsVersion}" defer></script>
 </head><body>
 <a class="skip-link" href="#main">${t('본문으로 건너뛰기', 'Skip to content')}</a>
 <header class="site-header"><nav class="nav container" aria-label="${t('주 메뉴', 'Main navigation')}"><a class="wordmark" href="${en ? 'en.html' : './'}" aria-label="Young Jun Kim home">yk<span class="brand-dot">.</span><span class="wordmark-name">Young Jun Kim</span></a><div class="nav-links"><a href="#projects">${t('프로젝트', 'Projects')}</a><a href="#about">${t('소개', 'About')}</a><a href="#blog">${t('기록', 'Notes')}</a><a href="#contact">${t('연락', 'Contact')}</a></div><div class="nav-tools"><a class="language" href="${en ? 'index.html' : 'en.html'}" lang="${en ? 'ko' : 'en'}">${en ? 'KO' : 'EN'} <span aria-hidden="true">↗</span></a><button class="theme-toggle" aria-label="${t('화면 테마 전환', 'Toggle color theme')}" title="${t('화면 테마 전환', 'Toggle color theme')}" aria-pressed="false">◐</button></div></nav></header>
